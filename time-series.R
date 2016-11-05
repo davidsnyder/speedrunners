@@ -15,8 +15,8 @@ pdf(args[2])
 
 table <- read.table(args[1], sep = "\t", header = TRUE)
 ftable <- table %>% select(format_time,date,player) %>% mutate(fdate = mdy(date)) #objectify date
-ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must convert to date, even though we only use hms
-graph <- ggplot(data = ftable) + geom_point(mapping = aes(x = fdate, y = format_time, color = player))
+ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must convert to datetime, even though we only use hms
+graph <- ggplot(data = ftable) + geom_point(mapping = aes(x = fdate, y = format_time, color = player)) + scale_y_datetime(date_labels = "%M\'%S\"")
 
 print(graph)
 
