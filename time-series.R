@@ -20,12 +20,15 @@ ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must
 graph <- ggplot(data = ftable) +
       	 geom_line(mapping = aes(x = fdate, y = format_time)) +
 	 geom_point(mapping = aes(x = fdate, y = format_time)) +
-	 theme(axis.title.y=element_text(margin=margin(0,15,0,0))) +
-	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) +
-	 theme(plot.margin=unit(c(1,1,1,1),"cm")) +
 	 ggtitle(graph_title) +
 	 xlab("Record Year") +
 	 ylab("Record Time") +
+	 theme(axis.text=element_text(size=14)) + #tick label size
+	 theme(plot.title=element_text(size=18)) + #plot title size
+	 theme(axis.title=element_text(size=16)) + #axis label size
+	 theme(axis.title.y=element_text(margin=margin(0,15,0,0))) + #increase margin for y-axis label
+	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
+	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), hjust=1,vjust=1) +
 	 scale_y_datetime(date_labels = "%Mm") 
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
