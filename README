@@ -1,2 +1,4 @@
-r> install.packages("tidyverse")
-r> install.packages("lubridate")
+install.packages("ggplot2")
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("ggrepel")
