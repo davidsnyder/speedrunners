@@ -30,7 +30,10 @@ graph <- ggplot(data = ftable) +
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), hjust=1,vjust=1) + #label all points matching player
-#	 geom_text(data=subset(ftable, date=="3/18/2016"), aes(fdate,format_time,label=player), hjust=0,vjust=-1) + #label all points matching date
+	 geom_text(data=subset(ftable, date=="10/19/2014"), aes(fdate,format_time,label=player), hjust=-0.2,vjust=-0.2) + #label all points matching date
+#	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
+#	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
+
 	 scale_y_datetime(date_labels = "%Mm") 
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
