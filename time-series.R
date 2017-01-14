@@ -22,6 +22,7 @@ graph <- ggplot(data = ftable) +
       	 geom_line(mapping = aes(x = fdate, y = format_time)) +
 	 geom_point(mapping = aes(x = fdate, y = format_time)) +
 	 ggtitle(graph_title) +
+	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("Record Year") +
 	 ylab("Record Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
