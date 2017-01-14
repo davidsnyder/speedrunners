@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-graph_title = "Super Metroid Any% World Records"
+graph_title = "Super Metroid Any% World Record Progression"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -32,7 +32,7 @@ graph <- ggplot(data = ftable) +
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-	 geom_text_repel(data=subset(ftable, date=="10/19/2014"), aes(fdate,format_time,label=player), size=4,box.padding=unit(1.5, 'lines')) + #label all points matching date
+	 geom_text_repel(data=subset(ftable, date=="9/2/2016"), aes(fdate,format_time,label=player),size=4,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
 	 scale_y_datetime(date_labels = "%Mm") 
