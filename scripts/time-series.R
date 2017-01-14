@@ -35,7 +35,8 @@ graph <- ggplot(data = ftable) +
 	 geom_text_repel(data=subset(ftable, date=="9/2/2016"), aes(fdate,format_time,label=player),size=4,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
-	 scale_y_datetime(date_labels = "%Mm") 
+	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
+#	 scale_y_datetime(date_labels = "%Hh%Mm") #y axis labels for runs with hours
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)
