@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-graph_title = "GTA: Vice City Any% Records"
+graph_title = "GTA III Any% Records"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -13,16 +13,16 @@ library(tidyverse)
 library(lubridate)
 options(digits.secs=3)
 
-pdf(args[2])
+pdf(args[2],width=8)
 
 table <- read.table(args[1], sep = "\t", header = TRUE)
-ftable <- table %>% select(format_time,date,player,category) %>% mutate(fdate = mdy(date)) #objectify date
+ftable <- table %>% select(format_time,date,player) %>% mutate(fdate = mdy(date)) #objectify date
 ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must convert to datetime, even though we only use hms
 graph <- ggplot() +
-      	 geom_line(data=subset(ftable,category=="ACE"),mapping = aes(x = fdate, y = format_time),linetype=2) +
-	 geom_point(data=subset(ftable,category=="ACE"),mapping = aes(x = fdate, y = format_time)) +
-	 geom_line(data=subset(ftable,category=="No ACE"),mapping = aes(x = fdate, y = format_time),linetype=1) +
-	 geom_point(data=subset(ftable,category=="No ACE"),mapping = aes(x = fdate, y = format_time)) +
+      	 geom_line(data=ftable,mapping = aes(x = fdate, y = format_time)) +
+	 geom_point(data=ftable,mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
+	 scale_shape_manual(values=c(16,10,15,17,7,2)) +
+	 labs(shape="") +	 
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
@@ -34,8 +34,8 @@ graph <- ggplot() +
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-	 geom_text_repel(data=subset(ftable, date=="8/9/2014"), aes(fdate,format_time,label="Replays discovery"),size=6,nudge_x=75,nudge_y=125,point.padding=unit(0.75,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
-	 geom_text_repel(data=subset(ftable, date=="8/1/2016"), aes(fdate,format_time,label="ACE discovery"),size=6,nudge_x=-500,nudge_y=-200,point.padding=unit(0.75,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
+#	 geom_text_repel(data=subset(ftable, date=="8/9/2014"), aes(fdate,format_time,label="Replays discovery"),size=6,nudge_x=75,nudge_y=125,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
+#	 geom_text_repel(data=subset(ftable, date=="8/1/2016"), aes(fdate,format_time,label="ACE discovery"),size=6,nudge_x=-500,nudge_y=-200,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
 #	 geom_vline(xintercept=as.numeric(mdy("08/05/2014")), linetype="dashed") + #discovery of replays
 #	 geom_vline(xintercept=as.numeric(mdy("08/01/2016")), linetype="dashed") + #discovery of ACE
 #	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
