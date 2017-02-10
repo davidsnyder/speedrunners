@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-graph_title = "Super Mario 64 120 Star Records"
+graph_title = "Super Mario 64 '120 Star' World Record Progression"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -24,7 +24,7 @@ graph <- ggplot(data = ftable) +
       	 geom_line(mapping = aes(x = fdate, y = format_time)) +
 	 geom_point(mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
 #	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=3) +
-	 scale_shape_manual(values=c(16,10,15,1,7,2,0,17,3)) +
+	 scale_shape_manual(values=c(16,10,15,1,7,2,0,17,3,4,5)) +
 	 labs(shape="") +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
