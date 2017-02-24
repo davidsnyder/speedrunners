@@ -1,4 +1,4 @@
-format_time	player	date	version	note	
+format_time	player	date	version	note	other_note
 0:17:13	TorjeAGC	12/25/2016	Wii VC (J)		
 0:17:15	skater82297	12/22/2016	Wii VC (J)		
 0:17:17	TorjeAGC	11/29/2016	Wii VC (J)		
@@ -61,7 +61,7 @@ format_time	player	date	version	note
 0:25:15	sva	4/14/2012	Wii VC (J)		Streamed on Stickam
 0:25:32	ZFG	4/13/2012	Wii VC (J)		
 0:28:xx	ChocoPoptart	4/13/2012	Wii VC (J)		
-0:34:59	ZFG	4/13/2012	Wii VC (J)	Deku Tree WW (Ganondoor)	Start of Ganondoor Era
+0:34:59	ZFG	4/13/2012	Wii VC (J)	Deku Tree Wrong Warp	Start of Ganondoor Era
 0:46:52	ZFG	4/11/2012	Wii VC (J)		End of Ganonless Era
 0:46:53	ZFG	3/20/2012	Wii VC (J)		
 0:47:25	ZFG	3/1/2012	Wii VC (J)		
@@ -70,7 +70,7 @@ format_time	player	date	version	note
 0:50:26	Cosmo	2/24/2012	Wii VC (J)		
 0:51:37	ZFG	2/22/2012	Wii VC (J)		
 0:53:18	ZFG	2/20/2012	Wii VC (J)		
-0:54:00	ZFG	2/20/2012	Wii VC (J)	Fire Temple WW (Ganonless)	Start of Ganonless Era
+0:54:00	ZFG	2/20/2012	Wii VC (J)	Fire Temple Wrong Warp	Start of Ganonless Era
 0:54:02	Zaccio	2/8/2012	Wii VC (J)		End of RBA Era
 0:54:52	ZFG	2/3/2012	Wii VC (J)		
 0:55:31	ZFG	1/12/2012	Wii VC (J)		

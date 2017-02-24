@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-#Use data file "loz-top3.tsv" with this R script
+#Use data file "oot-100%-top3.tsv" with this R script
 
 graph_title = "The LoZ: Ocarina of Time 100% Top 3 Competition"
 args = commandArgs(trailingOnly=TRUE)
@@ -39,7 +39,7 @@ graph <- ggplot() +
       	 geom_line(data=sva, mapping = aes(x = fdate, y = format_time),linetype=3) +
 	 geom_point(data=sva, mapping = aes(x = fdate, y = format_time,shape=player),size=1) +
 	 #tas
-	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=3) +
+	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=2) +
 
 	 scale_shape_manual(values=c(16,17,15,1)) +
 	 labs(shape="") +
