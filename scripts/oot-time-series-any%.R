@@ -51,12 +51,13 @@ graph <- ggplot() +
 	 theme(axis.title.y=element_text(margin=margin(0,15,0,0))) + #increase margin for y-axis label
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
-#	 geom_text_repel(data=subset(ftable, date=="5/7/2012"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-	 geom_text_repel(data=subset(ftable, note!=""), aes(fdate,format_time,label=note),size=4,nudge_y=150,nudge_x=400,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
+	 #label TAS
+	 geom_text_repel(data=tas, aes(fdate,format_time,label=feature), size=4,nudge_y=-300,nudge_x=-100,point.padding=unit(0.5,'lines')) +
+	 geom_text_repel(data=subset(ftable, note!=""), aes(fdate,format_time,label=note),size=4,nudge_y=150,nudge_x=550,point.padding=unit(0.5,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
 #	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
-	 scale_y_datetime(date_labels = "%Hh%Mm") #y axis labels for runs with hours
+	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:00","01:15"), format = "%H:%M")), date_labels = "%Hh%Mm") #y axis labels for runs with hours
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)
