@@ -57,6 +57,7 @@ graph <- ggplot() +
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
 #	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
+	 #limits sets the Y Axis to start at zero
 	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:00","01:15"), format = "%H:%M")), date_labels = "%Hh%Mm") #y axis labels for runs with hours
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
