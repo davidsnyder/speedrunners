@@ -31,15 +31,15 @@ tas <- data.frame(format_time=as.POSIXct("3:47:57.17",format="%H:%M:%OS"),fdate=
 graph <- ggplot() +
       	 #clint
       	 geom_line(data=clint, mapping = aes(x = fdate, y = format_time),linetype=1) +
-	 geom_point(data=clint, mapping = aes(x = fdate, y = format_time,shape=player),size=1) +
+	 geom_point(data=clint, mapping = aes(x = fdate, y = format_time,shape=player),size=1.5) +
 	 #zfg
       	 geom_line(data=zfg, mapping = aes(x = fdate, y = format_time),linetype=2) +
-	 geom_point(data=zfg, mapping = aes(x = fdate, y = format_time,shape=player),size=1) +
+	 geom_point(data=zfg, mapping = aes(x = fdate, y = format_time,shape=player),size=1.5) +
 	 #sva
       	 geom_line(data=sva, mapping = aes(x = fdate, y = format_time),linetype=3) +
-	 geom_point(data=sva, mapping = aes(x = fdate, y = format_time,shape=player),size=1) +
+	 geom_point(data=sva, mapping = aes(x = fdate, y = format_time,shape=player),size=1.5) +
 	 #tas
-	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=2) +
+#	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=2) +
 
 	 scale_shape_manual(values=c(16,17,15,1)) +
 	 labs(shape="") +

@@ -44,7 +44,7 @@ graph <- ggplot() +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
-	 ylab("Completion Time") +
+	 ylab("Record Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
 	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
@@ -58,7 +58,7 @@ graph <- ggplot() +
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
 #	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
 	 #limits sets the Y Axis to start at zero
-	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:00","01:15"), format = "%H:%M")), date_labels = "%Hh%Mm") #y axis labels for runs with hours
+	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:00","01:15"), format = "%H:%M")), date_labels = "%Hh%Mm",breaks = scales::pretty_breaks(n = 6)) #y axis labels
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)
