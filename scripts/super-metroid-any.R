@@ -13,7 +13,7 @@ library(tidyverse)
 library(lubridate)
 options(digits.secs=3)
 
-pdf(args[2],10)
+pdf(args[2])
 
 table <- read.table(args[1], sep = "\t", header = TRUE)
 ftable <- table %>% select(format_time,date,player) %>% mutate(fdate = mdy(date)) #objectify date
@@ -34,10 +34,11 @@ graph <- ggplot(data = ftable) +
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-#	 geom_text_repel(data=subset(ftable, date=="9/2/2016"), aes(fdate,format_time,label=player),size=4,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
+	 geom_text_repel(data=subset(ftable, date=="8/28/2014"), aes(fdate,format_time,label="PRKD change"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
+	 geom_text_repel(data=subset(ftable, date=="6/6/2012"), aes(fdate,format_time,label="Hotarubi Tie"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date	 
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
-	 scale_y_datetime(date_labels = "%Mm") 
+	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:41","00:50"), format = "%H:%M")), date_labels = "%Mm",breaks = scales::pretty_breaks(n = 10)) #y axis labels
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)
