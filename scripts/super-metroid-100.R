@@ -52,7 +52,7 @@ graph <- ggplot(data = ftable) +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
-	 ylab("Record Time") +
+	 ylab("Completion Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
 	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
