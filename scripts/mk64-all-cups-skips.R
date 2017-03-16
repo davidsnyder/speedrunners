@@ -4,6 +4,8 @@ graph_title = "Mario Kart 64 All Cups World Record Progression"
 graph_subtitle = "NTSC 150cc Skips"
 args = commandArgs(trailingOnly=TRUE)
 
+# ./scripts/mk64-all-cups-skips.R data/mario-kart-64/all-cups-skips.tsv pdf/all-cups-skips.pdf
+
 # input output
 if (length(args) < 2) {
   stop("Provide input.tsv output.pdf", call.=FALSE)

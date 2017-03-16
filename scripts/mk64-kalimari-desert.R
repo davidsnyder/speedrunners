@@ -4,6 +4,8 @@ graph_title = "Mario Kart 64 Kalimari Desert World Record Progression"
 graph_subtitle = "Time Trials 3lap (PAL Times)"
 args = commandArgs(trailingOnly=TRUE)
 
+#./scripts/mk64-kalimari-desert.R data/mario-kart-64/kalimari-desert-3lap.tsv pdf/mk64-kalimari.pdf 
+
 # input output
 if (length(args) < 2) {
   stop("Provide input.tsv output.pdf", call.=FALSE)
