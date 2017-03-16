@@ -52,7 +52,7 @@ graph <- ggplot(data = ftable) +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
-	 ylab("Completion Time") +
+	 ylab("Personal Best Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
 	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
@@ -66,7 +66,7 @@ graph <- ggplot(data = ftable) +
 	 scale_y_datetime(date_labels = "%Hh%Mm") + #y axis labels for runs with hours
 	 scale_x_date(labels = scales::date_format("%b %Y"),breaks = scales::date_breaks("2 months")) +
 	 theme(axis.text.x = element_text(angle=90,margin=margin(t=2))) +
-	 coord_cartesian(xlim = as.Date(c("2016-08-01", "2017-03-10")),ylim = as.POSIXct(strptime(c("01:14","01:20"), format = "%H:%M")))
+	 coord_cartesian(xlim = as.Date(c("2016-08-01", "2017-03-10")),ylim = as.POSIXct(strptime(c("01:14","01:22"), format = "%H:%M")))
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)

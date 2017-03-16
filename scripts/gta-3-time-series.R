@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-graph_title = "GTA III Any% Records"
+graph_title = "Grand Theft Auto III Any% World Record Progression"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output

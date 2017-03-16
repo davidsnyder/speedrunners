@@ -2,7 +2,7 @@
 
 #Use data file "loz-top3.tsv" with this R script
 
-graph_title = "The Legend of Zelda Any% World Record Competition"
+graph_title = "The Legend of Zelda Any% Top 3 Competition"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -46,7 +46,7 @@ graph <- ggplot() +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
-	 ylab("Completion Time") +
+	 ylab("Personal Best Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
 	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
@@ -58,7 +58,7 @@ graph <- ggplot() +
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
 	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
-#	 scale_y_datetime(date_labels = "%Hh%Mm") #y axis labels for runs with hours
+#	 scale_y_datetime(date_labels = "%H:%M") #y axis labels for runs with hours
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)

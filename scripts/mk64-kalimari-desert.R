@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-graph_title = "Super Mario 64 '120 Star' World Record Progression"
+graph_title = "Mario Kart 64 Kalimari Desert PAL 3lap Non-Shortcut Time Trials World Record Progression"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -15,16 +15,15 @@ options(digits.secs=3)
 
 pdf(args[2])
 
-tas <- data.frame(format_time=as.POSIXct("1:20:41.52",format="%H:%M:%OS"),fdate=mdy("12/13/2012"),player="MKDasher,Nahoc,sonicpacker")
-
 table <- read.table(args[1], sep = "\t", header = TRUE)
 ftable <- table %>% select(format_time,date,player) %>% mutate(fdate = mdy(date)) #objectify date
 ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must convert to datetime, even though we only use hms
-graph <- ggplot(data = ftable) +
+
+
+graph <- ggplot(data=ftable) +
       	 geom_line(mapping = aes(x = fdate, y = format_time)) +
-	 geom_point(mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
-#	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=3) +
-	 scale_shape_manual(values=c(16,10,15,1,7,2,0,17,3,4,5)) +
+#	 geom_point(mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
+#	 scale_shape_manual(values=c(16,2,15,17,10)) +
 	 labs(shape="") +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
@@ -37,11 +36,12 @@ graph <- ggplot(data = ftable) +
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-#	 geom_text_repel(data=tas, aes(fdate,format_time,label="TAS"), size=4,box.padding=unit(2,'lines'),point.padding=unit(0.75,'lines'),nudge_x=-10) +
-#	 geom_text_repel(data=subset(ftable, feature!=""), aes(fdate,format_time,label=feature),size=4,point.padding=unit(0.75,'lines'),box.padding=unit(2,'lines')) + #label all points with "feature" column
+#	 geom_text_repel(data=subset(ftable, date=="8/28/2014"), aes(fdate,format_time,label="PRKD change"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
+#	 geom_text_repel(data=subset(ftable, date=="6/6/2012"), aes(fdate,format_time,label="Tie with Hotarubi"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date	 
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
-#	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-20 00:4:29")),linetype="dashed") + #how to make a dashed hline
-	 scale_y_datetime(date_labels = "%Hh%Mm") 
+#	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-14 00:44:29")),linetype="dashed") + #how to make a dashed hline
+	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:41","00:53"), format = "%H:%M")), date_labels = "%Mm",breaks = scales::pretty_breaks(n = 10)) + #y axis labels
+	 coord_cartesian(xlim = as.Date(c("2012-05-01", "2017-03-10")),ylim = as.POSIXct(strptime(c("00:41","00:50"), format = "%H:%M")))
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)

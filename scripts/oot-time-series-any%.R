@@ -15,7 +15,7 @@ library(tidyverse)
 library(lubridate)
 options(digits.secs=3)
 
-pdf(args[2],width=10)
+pdf(args[2],10)
 
 table <- read.table(args[1], sep = "\t", header = TRUE)
 ftable <- table %>% select(format_time,player,date,version,note,other_note) %>% mutate(fdate = mdy(date)) #objectify date
@@ -23,23 +23,23 @@ ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must
 
 zfg <- subset(ftable, player=="ZFG")
 first <- subset(ftable,date=="12/25/2016")
-ftable_points <- subset(ftable, player!="ZFG" && date!="12/25/2016")
+ftable_points <- subset(ftable, player!="ZFG")
 
 tas <- data.frame(format_time=as.POSIXct("0:16:57.69",format="%H:%M:%OS"),fdate=mdy("12/31/2013"),player="Bloobiebla & MrGrunz (TAS)",feature="TAS")
 
 graph <- ggplot() +
 
       	 geom_line(data=ftable,mapping = aes(x = fdate, y = format_time),linetype=1) +
-#	 geom_point(data=ftable_points,mapping = aes(x = fdate, y = format_time),size=1) +
+	 geom_point(data=ftable_points,mapping = aes(x = fdate, y = format_time),size=1) +
 	 #zfg
 	 geom_point(data=zfg,mapping = aes(x = fdate, y = format_time,shape=player),size=2) +
 	 #first place
-	 geom_point(data=first,mapping = aes(x = fdate, y = format_time,shape=player),size=2) +
+#	 geom_point(data=first,mapping = aes(x = fdate, y = format_time,shape=player),size=2) +
 
 	 #tas
 	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=2) +
 
-	 scale_shape_manual(values=c(15,16,17)) +
+	 scale_shape_manual(values=c(15,2)) +
 	 labs(shape="") +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
@@ -59,6 +59,8 @@ graph <- ggplot() +
 #	 scale_y_datetime(date_labels = "%Mm") #y axis labels for runs < 1hr
 	 #limits sets the Y Axis to start at zero
 	 scale_y_datetime(limits=as.POSIXct(strptime(c("00:00","01:15"), format = "%H:%M")), date_labels = "%Hh%Mm",breaks = scales::pretty_breaks(n = 6)) #y axis labels
+#	 coord_cartesian(xlim = as.Date(c("2011-01-01", "2017-01-01")),ylim = as.POSIXct(strptime(c("00:00","00:59"), format = "%H:%M")))
+
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)

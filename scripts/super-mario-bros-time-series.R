@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-graph_title = "Super Mario Bros. Any% Records"
+graph_title = "Super Mario Bros. Any% World Record Progression"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -13,7 +13,7 @@ library(tidyverse)
 library(lubridate)
 options(digits.secs=3)
 
-pdf(args[2],width=12)
+pdf(args[2], 10)
 
 tas <- data.frame(format_time=as.POSIXct("0:04:54.03",format="%H:%M:%OS"),fdate=mdy("01/06/2011"),player="HappyLee",feature="TAS")
 
@@ -24,7 +24,7 @@ graph <- ggplot(data = ftable) +
       	 geom_line(mapping = aes(x = fdate, y = format_time)) +
 	 geom_point(mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
 	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=3) +
-	 scale_shape_manual(values=c(16,10,15,17,7,2,0)) +
+	 scale_shape_manual(values=c(16,10,15,7,17,2,0)) +
 	 labs(shape="") +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
@@ -41,7 +41,8 @@ graph <- ggplot(data = ftable) +
 	 geom_text_repel(data=subset(ftable, feature!=""), aes(fdate,format_time,label=feature),size=4,point.padding=unit(0.75,'lines'),box.padding=unit(2,'lines')) + #label all points with "feature" column
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-20 00:4:29")),linetype="dashed") + #how to make a dashed hline
-	 scale_y_datetime(date_labels = "%Mm%Ss") 
+	 scale_y_datetime(date_labels = "%Mm%Ss",breaks = scales::pretty_breaks(n = 8)) +
+	 scale_x_date(labels = scales::date_format("%Y"),breaks = scales::date_breaks("2 years"))
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)

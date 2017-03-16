@@ -30,10 +30,10 @@ tas <- data.frame(format_time=as.POSIXct("3:47:57.17",format="%H:%M:%OS"),fdate=
 
 graph <- ggplot() +
       	 #clint
-      	 geom_line(data=clint, mapping = aes(x = fdate, y = format_time),linetype=1) +
+      	 geom_line(data=clint, mapping = aes(x = fdate, y = format_time),linetype=2) +
 	 geom_point(data=clint, mapping = aes(x = fdate, y = format_time,shape=player),size=1.5) +
 	 #zfg
-      	 geom_line(data=zfg, mapping = aes(x = fdate, y = format_time),linetype=2) +
+      	 geom_line(data=zfg, mapping = aes(x = fdate, y = format_time),linetype=1) +
 	 geom_point(data=zfg, mapping = aes(x = fdate, y = format_time,shape=player),size=1.5) +
 	 #sva
       	 geom_line(data=sva, mapping = aes(x = fdate, y = format_time),linetype=3) +
@@ -41,12 +41,12 @@ graph <- ggplot() +
 	 #tas
 #	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=2) +
 
-	 scale_shape_manual(values=c(16,17,15,1)) +
+	 scale_shape_manual(values=c(16,15,17,1)) +
 	 labs(shape="") +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
-	 ylab("Completion Time") +
+	 ylab("Personal Best Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
 	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
