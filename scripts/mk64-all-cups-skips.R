@@ -41,7 +41,7 @@ graph <- ggplot() +
 	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
 	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-	 geom_text_repel(data=ftable, aes(fdate,format_time,label=notes),size=2.5,point.padding=unit(0.8,'lines'),nudge_x=-20,box.padding=unit(1,'lines')) + #label all points matching date
+	 geom_text_repel(data=ftable, aes(fdate,format_time,label=notes),size=2.5,point.padding=unit(0.6,'lines'),nudge_x=-15,box.padding=unit(1,'lines')) + #label all points matching date
 #	 geom_text_repel(data=subset(ftable, date=="6/6/2012"), aes(fdate,format_time,label="Tie with Hotarubi"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date	 
 	 geom_vline(xintercept=as.numeric(mdy("5/5/2016")), linetype="dotted",alpha=0.6) +
          geom_text(data=data.frame(x=as.Date(mdy("5/5/2016")),y=as.POSIXct("0:31:3l.00",format="%H:%M:%OS")),aes(x=x,y=y,label="NTSC-J Switch"),hjust=1.05,size=3) +

@@ -22,8 +22,8 @@ table <- read.table(args[1], sep = "\t", header = TRUE)
 ftable <- table %>% select(date,format_time,player,system,shortcut) %>% mutate(fdate = mdy(date)) #objectify date
 ftable$format_time <- as.POSIXct(ftable$format_time, format = "%H:%M:%OS") #must convert to datetime, even though we only use hms
 
-shortcut <- subset(ftable, shortcut=="YES")
-non_shortcut <- subset(ftable, shortcut!="YES")
+shortcut <- subset(ftable, shortcut=="Shortcut")
+non_shortcut <- subset(ftable, shortcut=="Non-Shortcut")
 
 recent_points <- subset(ftable, (player=="abney317" | player=="MR" | player=="MJ" | player=="VAJ" ))
 
@@ -31,7 +31,7 @@ graph <- ggplot() +
       	 geom_line(data=shortcut,mapping = aes(x = fdate, y = format_time,linetype=shortcut)) +
       	 geom_line(data=non_shortcut,mapping = aes(x = fdate, y = format_time,linetype=shortcut)) +
 	 
-	 geom_point(data=recent_points,mapping = aes(x = fdate, y = format_time,shape=player),size=1.75) +
+#	 geom_point(data=recent_points,mapping = aes(x = fdate, y = format_time,shape=player),size=1.75) +
 	 scale_linetype_manual("Category", values=c("solid", "dotted")) +	 
 	 scale_shape_manual("Player",values=c(0,1,15,16)) +
 	 labs(shape="") +
