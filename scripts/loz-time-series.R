@@ -3,6 +3,7 @@
 #Use data file "loz-top3.tsv" with this R script
 
 graph_title = "The Legend of Zelda Any% Top 3 Competition"
+citation_url = "Sources: www.speedrun.com, www.zeldaspeedruns.com"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -42,7 +43,7 @@ graph <- ggplot() +
 #	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=3) +
 
 	 scale_shape_manual(values=c(16,17,15,10)) +
-	 labs(shape="") +
+	 labs(shape="",caption=citation_url) +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +

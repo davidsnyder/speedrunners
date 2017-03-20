@@ -2,6 +2,9 @@
 
 graph_title = "Mario Kart 64 All Cups World Record Progression"
 graph_subtitle = "NTSC 150cc Skips"
+citation_url = "Source: https://goo.gl/H0Ztkz"
+# https://docs.google.com/spreadsheets/u/1/d/1SS-6SyrqcRXQuXMw2CIdM1ixEK8Y0-UmzfnQVpOj_U4/pubhtml?gid=20262226
+
 args = commandArgs(trailingOnly=TRUE)
 
 # ./scripts/mk64-all-cups-skips.R data/mario-kart-64/all-cups-skips.tsv pdf/all-cups-skips.pdf

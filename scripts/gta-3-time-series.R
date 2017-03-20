@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
 graph_title = "Grand Theft Auto III Any% World Record Progression"
+citation_url = "Source: www.speedrun.com"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -22,7 +23,7 @@ graph <- ggplot() +
       	 geom_line(data=ftable,mapping = aes(x = fdate, y = format_time)) +
 	 geom_point(data=ftable,mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
 	 scale_shape_manual(values=c(16,10,15,17,7,2)) +
-	 labs(shape="") +	 
+	 labs(shape="",caption=citation_url) +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +

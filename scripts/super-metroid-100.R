@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
 graph_title = "Super Metroid 100% Items Top 6 Competition"
+citation_url = "Sources: www.deanyd.net/sm, www.speedrun.com, Twitch"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output

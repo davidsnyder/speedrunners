@@ -2,6 +2,8 @@
 
 graph_title = "Mario Kart 64 Kalimari Desert World Record Progression"
 graph_subtitle = "Time Trials 3lap (PAL Times)"
+citation_url = "Source: www.mkwrs.com/mk64"
+
 args = commandArgs(trailingOnly=TRUE)
 
 #./scripts/mk64-kalimari-desert.R data/mario-kart-64/kalimari-desert-3lap.tsv pdf/mk64-kalimari.pdf 
@@ -34,7 +36,7 @@ graph <- ggplot() +
 #	 geom_point(data=recent_points,mapping = aes(x = fdate, y = format_time,shape=player),size=1.75) +
 	 scale_linetype_manual("Category", values=c("solid", "dotted")) +	 
 	 scale_shape_manual("Player",values=c(0,1,15,16)) +
-	 labs(shape="") +
+	 labs(shape="",caption=citation_url) +
 	 ggtitle(graph_title,graph_subtitle) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 theme(plot.subtitle = element_text(hjust = 0.5)) +	 

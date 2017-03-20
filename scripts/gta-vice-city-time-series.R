@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
 graph_title = "GTA: Vice City Any% World Record Progression"
+citation_url = "Source: www.speedrun.com"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -25,6 +26,7 @@ graph <- ggplot(data=ftable,aes(x = fdate, y = format_time,group=category)) +
 	 
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
+	 labs(caption=citation_url) +	 
 	 xlab("") +
 	 ylab("Record Time") +
 	 theme(axis.text=element_text(size=14)) + #tick label size

@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
 graph_title = "Super Metroid Any% World Record Progression"
+citation_url = "Source: www.deanyd.net/sm"
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -27,7 +28,7 @@ graph <- ggplot() +
       	 geom_line(data=ftable, mapping = aes(x = fdate, y = format_time)) +
 	 geom_point(data=without_smokey,mapping = aes(x = fdate, y = format_time,shape=player),size=3) +
 	 scale_shape_manual(values=c(16,2,15,17,10)) +
-	 labs(shape="") +
+	 labs(shape="",caption=citation_url) +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +

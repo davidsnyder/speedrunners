@@ -3,6 +3,8 @@
 #Use data file "oot-any%.tsv" with this R script
 
 graph_title = "The LoZ: Ocarina of Time Any% World Record Progression"
+citation_url = "Sources: www.speedrun.com,www.zeldaspeedruns.com, https://goo.gl/jvNMJW"
+# https://docs.google.com/spreadsheets/d/1DgefbvS3X4geDxfwdE-K6CnGvNcDwZSmiZz_u2KGDcI/edit#gid=0
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -40,7 +42,7 @@ graph <- ggplot() +
 	 geom_point(data=tas,aes(x=fdate,y=format_time,shape=player),size=2) +
 
 	 scale_shape_manual(values=c(15,2)) +
-	 labs(shape="") +
+	 labs(shape="",caption=citation_url) +
 	 ggtitle(graph_title) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
