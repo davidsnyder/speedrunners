@@ -1,8 +1,11 @@
 #!/usr/bin/env Rscript
 
-graph_title = "Mario Kart 64 Kalimari Desert World Record Progression"
-graph_subtitle = "Time Trials 3lap (PAL Times)"
-citation_url = "Source: www.mkwrs.com/mk64"
+#graph_title = "Mario Kart 64 Kalimari Desert World Record Progression"
+#graph_subtitle = "Time Trials 3lap (PAL Times)"
+#citation_url = "Source: www.mkwrs.com/mk64"
+graph_title = ""
+graph_subtitle = ""
+citation_url = ""
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -18,7 +21,7 @@ library(tidyverse)
 library(lubridate)
 options(digits.secs=3)
 
-pdf(args[2])
+pdf(args[2],width=8)
 
 table <- read.table(args[1], sep = "\t", header = TRUE)
 ftable <- table %>% select(date,format_time,player,system,shortcut) %>% mutate(fdate = mdy(date)) #objectify date
@@ -34,20 +37,22 @@ graph <- ggplot() +
       	 geom_line(data=non_shortcut,mapping = aes(x = fdate, y = format_time,linetype=shortcut)) +
 	 
 #	 geom_point(data=recent_points,mapping = aes(x = fdate, y = format_time,shape=player),size=1.75) +
-	 scale_linetype_manual("Category", values=c("solid", "dotted")) +	 
-	 scale_shape_manual("Player",values=c(0,1,15,16)) +
+	 scale_linetype_manual("Category", values=c("solid", "dotted")) +	
+	 theme(legend.title=element_text(size=14)) + 
+	 scale_shape_manual(values=c(0,1,15,16)) +
 	 labs(shape="",caption=citation_url) +
 	 ggtitle(graph_title,graph_subtitle) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 theme(plot.subtitle = element_text(hjust = 0.5)) +	 
 	 xlab("") +
 	 ylab("Record Time") +
+	 theme(legend.text=element_text(size=14)) +
+	 theme(legend.key.size = unit(1.5, 'lines')) +
 	 theme(axis.text=element_text(size=14)) + #tick label size
-	 theme(plot.title=element_text(size=14)) + #plot title size
+	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
 	 theme(axis.title.y=element_text(margin=margin(0,15,0,0))) + #increase margin for y-axis label
-	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
-	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
+	 theme(plot.margin=unit(c(0,.5,0,.5),"cm")) + #increase margin size around whole graph (t,r,b,l)
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
 #	 geom_text_repel(data=subset(ftable, date=="8/28/2014"), aes(fdate,format_time,label="PRKD change"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date
 #	 geom_text_repel(data=subset(ftable, date=="6/6/2012"), aes(fdate,format_time,label="Tie with Hotarubi"),size=4,nudge_x=200,nudge_y=100,point.padding=unit(0.25,'lines'),box.padding=unit(2,'lines')) + #label all points matching date	 

@@ -1,6 +1,9 @@
 #!/usr/bin/env Rscript
 
-graph_title = "Super Mario Bros. Any% World Record Progression"
+#use with file "data/super-mario-bros-any%-cut.tsv"
+
+#graph_title = "Super Mario Bros. Any% World Record Progression"
+graph_title = ""
 args = commandArgs(trailingOnly=TRUE)
 
 # input output
@@ -13,7 +16,7 @@ library(tidyverse)
 library(lubridate)
 options(digits.secs=3)
 
-pdf(args[2], 10)
+pdf(args[2],width=8)
 
 tas <- data.frame(format_time=as.POSIXct("0:04:54.03",format="%H:%M:%OS"),fdate=mdy("01/06/2011"),player="HappyLee",feature="TAS")
 
@@ -30,15 +33,17 @@ graph <- ggplot(data = ftable) +
 	 theme(plot.title = element_text(hjust = 0.5)) +
 	 xlab("") +
 	 ylab("Record Time") +
+	 theme(legend.text=element_text(size=14)) +
+	 theme(legend.key.size = unit(1.5, 'lines')) +
+	 theme(legend.position= "bottom") +
 	 theme(axis.text=element_text(size=14)) + #tick label size
 	 theme(plot.title=element_text(size=18)) + #plot title size
 	 theme(axis.title=element_text(size=16)) + #axis label size
 	 theme(axis.title.y=element_text(margin=margin(0,15,0,0))) + #increase margin for y-axis label
-	 theme(axis.title.x=element_text(margin=margin(15,0,0,0))) + #increase margin for x-axis label
-	 theme(plot.margin=unit(c(1,1,1,1),"cm")) + #increase margin size around whole graph
+	 theme(plot.margin=unit(c(0,.5,0,.5),"cm")) + #increase margin size around whole graph (t,r,b,l)
 #	 geom_text_repel(data=subset(ftable, player=="Zoast"), aes(fdate,format_time,label=player), size=3) + #label all points matching player
-	 geom_text_repel(data=tas, aes(fdate,format_time,label=feature), size=4,box.padding=unit(2,'lines'),point.padding=unit(0.75,'lines'),nudge_x=-10) +
-	 geom_text_repel(data=subset(ftable, feature!=""), aes(fdate,format_time,label=feature),size=4,point.padding=unit(0.75,'lines'),box.padding=unit(2,'lines')) + #label all points with "feature" column
+	 geom_text_repel(data=tas, aes(fdate,format_time,label=feature), size=4.5,box.padding=unit(2,'lines'),point.padding=unit(0.75,'lines'),nudge_x=-10) +
+	 geom_text_repel(data=subset(ftable, feature!=""), aes(fdate,format_time,label=feature),size=4,point.padding=unit(0.75,'lines'),nudge_y=1,nudge_x=300,box.padding=unit(2,'lines')) + #label all points with "feature" column
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-20 00:4:29")),linetype="dashed") + #how to make a dashed hline
 	 scale_y_datetime(date_labels = "%Mm%Ss",breaks = scales::pretty_breaks(n = 8)) +
