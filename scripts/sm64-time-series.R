@@ -50,7 +50,8 @@ graph <- ggplot(data = ftable) +
 #	 geom_text_repel(data=subset(ftable, feature!=""), aes(fdate,format_time,label=feature),size=4,point.padding=unit(0.75,'lines'),box.padding=unit(2,'lines')) + #label all points with "feature" column
 #	 geom_vline(xintercept=as.numeric(mdy("10/19/2014")), linetype="dashed") + #how to make a dashed vline
 #	 geom_hline(yintercept=as.numeric(as.POSIXct("2017-01-20 00:4:29")),linetype="dashed") + #how to make a dashed hline
-	 scale_y_datetime(date_labels = "%Hh%Mm") 
+	 scale_y_datetime(limits=as.POSIXct(strptime(c("01:40","01:52"), format = "%H:%M")), date_labels = "%Hh%Mm",breaks = scales::pretty_breaks(n = 6)) + #y axis labels
+	 scale_x_date(labels = scales::date_format("%Y"),breaks = scales::date_breaks("1 year"))
 #	 scale_y_datetime(date_labels = "%M\'%S\"") 
 
 print(graph)
